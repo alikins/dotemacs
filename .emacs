@@ -5,6 +5,8 @@
 ; ctrl-y paste/yank
 ;  alt-y cycle through yank ring
 ;
+; ctrl-h b show all key commands
+; alt-; comment-dwim (comment/uncomment)
 ; ctrl-tab dabrev/completion
 ; alt-g goto line
 ; alt-cursor move tabs
@@ -51,6 +53,17 @@
 (global-set-key [(meta up)]   'tabbar-forward-group)
 (global-set-key [(meta down)]   'tabbar-backward-group)
 
+; both of the below from emacs-fu
+; y/n instead of yes/no
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+; make links clickable
+(add-hook 'find-file-hooks 'goto-address-prog-mode)
+
+; http://emacs-fu.blogspot.com/2011/05/toward-balanced-and-colorful-delimiters.html
+(require 'rainbow-delimiters)
+;(setq-default frame-background-mode 'dark)
+
 ; uh, yeah, put the scroll bars on the right like every
 ; other app in the universe
 (set-scroll-bar-mode 'right)
@@ -70,6 +83,7 @@
 (setq font-lock-use-default-colors t)
 (require 'font-lock)
 (require 'desktop)
+(require 'winner)
 
 ;; pymacs http://pymacs.progiciels-bpi.ca/pymacs.html#installation
 ;; why? to try to get rope/autocomplete better
@@ -103,6 +117,7 @@
 ; js2 needs to be byte compile, see the module code
 (autoload 'js2-mode "js2" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . js2-mode))
+(add-to-list 'auto-mode-alist '("\\.json$" . js2-mode))
 
 ;http://www.emacswiki.org/emacs/WhiteSpace
 (require 'whitespace)
@@ -112,6 +127,11 @@
 ;;(setq global-whitespace-mode t)
 (setq whitespace-style (quote (face tabs trailing space-before-tab newline empty space-after-tab )))
 
+; use less name buffer names when we have multiple of the same fileanme
+(require 'uniquify)
+
+; make ctrl-z do the normal thing
+(global-set-key (kbd "C-z") 'undo)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -125,7 +145,8 @@
  '(global-font-lock-mode t nil (font-lock))
  '(query-user-mail-address nil)
  '(show-paren-mode t nil (paren))
- '(uniquify-buffer-name-style (quote forward) nil (uniquify)))
+ '(uniquify-buffer-name-style (quote forward) nil (uniquify))
+ '(vc-follow-symlinks nil))
 
 (custom-set-faces
   ;; custom-set-faces was added by Custom.
@@ -145,4 +166,5 @@
  '(font-lock-string-face ((t (:foreground "green4"))))
  '(font-lock-type-face ((t (:foreground "steel blue"))))
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "magenta4" :bold t))))
- '(font-lock-warning-face ((((class color) (background light)) (:foreground "Red" :bold t)))))
+ '(font-lock-warning-face ((((class color) (background light)) (:foreground "Red" :bold t))))
+ '(link ((((class color) (min-colors 88) (background dark)) (:foreground "deep sky blue" :underline t)))))
