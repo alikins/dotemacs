@@ -1,0 +1,5 @@
+.emacs.d/auto-save-list
+session.*
+*~
+*.elc
+.emacs.d/tramp
