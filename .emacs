@@ -82,8 +82,20 @@
 (setq font-lock-use-default-fonts nil)
 (setq font-lock-use-default-colors t)
 (require 'font-lock)
+
 (require 'desktop)
+;; save desktop:
+(desktop-save-mode 1)
+
+;; keeps track of window layours and lets you
+;; cycle through them
 (require 'winner)
+
+;; show which function in the mode bar
+;;(require 'which-function-mode)
+
+;; use aspell for spelling
+(setq ispell-program-name "aspell")
 
 ;; pymacs http://pymacs.progiciels-bpi.ca/pymacs.html#installation
 ;; why? to try to get rope/autocomplete better
@@ -111,6 +123,10 @@
 ; http://stackoverflow.com/questions/1259873/how-can-i-use-emacs-flymake-mode-for-python-with-pyflakes-and-pylint-checking-cod
 ; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
 (require 'init_python)
+
+(require 'flymake-ruby)
+(add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
 
 ; http://code.google.com/p/js2-mode
 ; use js2 mode for javascript/json
@@ -142,7 +158,9 @@
  '(column-number-mode t)
  '(current-language-environment "Latin-1")
  '(default-input-method "latin-1-prefix")
+ '(ecb-source-path (quote (("/" "/") ("/home/adrian/src/candlepin" "candlepin") ("/home/adrian/src/candlepin" "candlepin"))))
  '(global-font-lock-mode t nil (font-lock))
+ '(ispell-program-name "aspell")
  '(query-user-mail-address nil)
  '(show-paren-mode t nil (paren))
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))

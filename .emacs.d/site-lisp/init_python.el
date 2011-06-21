@@ -22,6 +22,7 @@
 ;;  '(add-to-list 'pymacs-load-path YOUR-PYMACS-DIRECTORY"))
 (pymacs-load "ropemacs" "rope-")
 (setq ropemacs-enable-autoimport t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; Auto-completion
 ;;;  Integrates:
@@ -34,11 +35,13 @@
     (nreverse
      (dolist (element list value)
       (setq value (cons (format "%s%s" prefix element) value))))))
+
 (defvar ac-source-rope
   '((candidates
      . (lambda ()
          (prefix-list-elements (rope-completions) ac-target))))
   "Source for Rope")
+
 (defun ac-python-find ()
   "Python `ac-find-function'."
   (require 'thingatpt)
@@ -48,6 +51,7 @@
             (point)
           nil)
       symbol)))
+
 (defun ac-python-candidate ()
   "Python `ac-candidates-function'"
   (let (candidates)
@@ -69,6 +73,7 @@
             (setcdr (nthcdr (1- ac-limit) cand) nil))
         (setq candidates (append candidates cand))))
     (delete-dups candidates)))
+
 (add-hook 'python-mode-hook
           (lambda ()
                  (auto-complete-mode 1)
@@ -78,6 +83,7 @@
                  (set (make-local-variable 'ac-find-function) 'ac-python-find)
                  (set (make-local-variable 'ac-candidate-function) 'ac-python-candidate)
                  (set (make-local-variable 'ac-auto-start) nil)))
+
 ;;Ryan's python specific tab completion
 (defun ryan-python-tab ()
   ; Try the following:
@@ -87,11 +93,13 @@
   (interactive)
   (if (eql (ac-start) 0)
       (indent-for-tab-command)))
-(defadvice ac-start (before advice-turn-on-auto-start activate)
+
+(defadvice ac-start (before adviC-turn-on-auto-start activate)
   (set (make-local-variable 'ac-auto-start) t))
 (defadvice ac-cleanup (after advice-turn-off-auto-start activate)
   (set (make-local-variable 'ac-auto-start) nil))
-;;(define-key python-mode-map "\t" 'ryan-python-tab)
+
+(define-key python-mode-map "\c-\t" 'ryan-python-tab)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; End Auto Completion
@@ -110,4 +118,5 @@
   (add-to-list 'flymake-allowed-file-name-masks
 	       '("\\.py\\'" flymake-pyflakes-init)))
 (add-hook 'find-file-hook 'flymake-find-file-hook)
+(require 'flymake-cursor)
 (provide 'init_python)
