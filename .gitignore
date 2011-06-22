@@ -3,3 +3,4 @@ session.*
 *~
 *.elc
 .emacs.d/tramp
+\#*\#

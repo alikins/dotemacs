@@ -94,12 +94,12 @@
   (if (eql (ac-start) 0)
       (indent-for-tab-command)))
 
-(defadvice ac-start (before adviC-turn-on-auto-start activate)
+(defadvice ac-start (before advice-turn-on-auto-start activate)
   (set (make-local-variable 'ac-auto-start) t))
 (defadvice ac-cleanup (after advice-turn-off-auto-start activate)
   (set (make-local-variable 'ac-auto-start) nil))
 
-(define-key python-mode-map "\c-\t" 'ryan-python-tab)
+;(define-key python-mode-map "\c-\t" 'ryan-python-tab)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;; End Auto Completion

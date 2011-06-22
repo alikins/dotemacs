@@ -13,6 +13,10 @@
 ;
 ; git-blame-mode
 
+;; some of this from
+;; https://twiki.cern.ch/twiki/bin/view/CDS/EmacsTips
+;; http://www.emacswiki.com
+
 ; local path
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
@@ -148,6 +152,17 @@
 
 ; make ctrl-z do the normal thing
 (global-set-key (kbd "C-z") 'undo)
+
+;; http://www.emacswiki.org/cgi-bin/wiki/menu-bar+.el
+(eval-after-load "menu-bar" '(require 'menu-bar+))
+
+
+;; http://code.google.com/p/yasnippet/
+(add-to-list 'load-path
+             "~/.emacs.d/plugins/yasnippet-0.6.1c")
+(require 'yasnippet) ;; not yasnippet-bundle
+(yas/initialize)
+(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
