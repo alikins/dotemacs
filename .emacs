@@ -156,6 +156,11 @@
 ;; http://www.emacswiki.org/cgi-bin/wiki/menu-bar+.el
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
+;; show test coverage for python
+;;https://github.com/mattharrison/pycoverage.el/
+(load-file "~/.emacs.d/site-lisp/pycov2.el")
+(require 'linum)
+(require 'pycov2)
 
 ;; http://code.google.com/p/yasnippet/
 (add-to-list 'load-path
@@ -163,6 +168,8 @@
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
+(yas/load-directory "~/.emacs.d/plugins/yasnippets-more")
+(yas/load-directory "~/.emacs.d/plugins/yasnippets-local")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -175,7 +182,13 @@
  '(default-input-method "latin-1-prefix")
  '(ecb-source-path (quote (("/" "/") ("/home/adrian/src/candlepin" "candlepin") ("/home/adrian/src/candlepin" "candlepin"))))
  '(global-font-lock-mode t nil (font-lock))
- '(ispell-program-name "aspell")
+ '(ispell-program-name "aspell" t)
+ '(js2-highlight-level 3)
+ '(js2-mirror-mode nil)
+ '(js2-missing-semi-one-line-override t)
+ '(js2-mode-escape-quotes nil)
+ '(js2-mode-show-parse-errors t)
+ '(js2-move-point-on-right-click nil)
  '(query-user-mail-address nil)
  '(show-paren-mode t nil (paren))
  '(uniquify-buffer-name-style (quote forward) nil (uniquify))
