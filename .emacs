@@ -12,7 +12,20 @@
 ; alt-cursor move tabs
 ;
 ; git-blame-mode
-
+;
+;
+; useful modes:
+; follow-mode   (makes windows continue side-by-side)
+; follow-delete-other-windows-and-split   (make current buffer followed onto full screen)
+; whitespace-mode  (show's unneeded whitespace)
+; linum-mode (shows linums in the "tray", also need for pycov)
+; pycov2 mode (parse python .coverage files and show lines not covered)
+; compile-mode (run's make, show's errors)
+; find-grep (recursive grep, show's in compile style buffer)
+; artist-mode (ascii art)
+; ack-mode (show ack output, n/p for next/previous)
+; cd (changes default dir for find/find-grep/compile/etc)
+;
 ;; some of this from
 ;; https://twiki.cern.ch/twiki/bin/view/CDS/EmacsTips
 ;; http://www.emacswiki.com
@@ -170,6 +183,13 @@
 (yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
 (yas/load-directory "~/.emacs.d/plugins/yasnippets-more")
 (yas/load-directory "~/.emacs.d/plugins/yasnippets-local")
+
+;;  http://nschum.de/src/emacs/full-ack/
+(add-to-list 'load-path "/path/to/full-ack")
+(autoload 'ack-same "full-ack" nil t)
+(autoload 'ack "full-ack" nil t)
+(autoload 'ack-find-same-file "full-ack" nil t)
+(autoload 'ack-find-file "full-ack" nil t)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
