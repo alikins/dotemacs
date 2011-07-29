@@ -51,7 +51,7 @@
 
 
 ; anything http://www.emacswiki.org/cgi-bin/wiki/Anything
-(require 'anything-config)
+;(require 'anything-config)
 
 ; c-x B to search buffers
 ; c-X c-F to do the interesting bits
@@ -190,6 +190,9 @@
 (autoload 'ack "full-ack" nil t)
 (autoload 'ack-find-same-file "full-ack" nil t)
 (autoload 'ack-find-file "full-ack" nil t)
+
+;; https://bitbucket.org/durin42/nosemacs
+(require 'nose)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
