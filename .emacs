@@ -194,6 +194,8 @@
 ;; https://bitbucket.org/durin42/nosemacs
 (require 'nose)
 
+;;http://www.emacswiki.org/emacs/SrSpeedbar
+(require 'sr-speedbar)
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
@@ -203,7 +205,10 @@
  '(column-number-mode t)
  '(current-language-environment "Latin-1")
  '(default-input-method "latin-1-prefix")
+ '(desktop-load-locked-desktop t)
+ '(desktop-save t)
  '(ecb-source-path (quote (("/" "/") ("/home/adrian/src/candlepin" "candlepin") ("/home/adrian/src/candlepin" "candlepin"))))
+ '(flymake-gui-warnings-enabled nil)
  '(global-font-lock-mode t nil (font-lock))
  '(ispell-program-name "aspell" t)
  '(js2-highlight-level 3)
