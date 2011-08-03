@@ -29,6 +29,14 @@
 ;; some of this from
 ;; https://twiki.cern.ch/twiki/bin/view/CDS/EmacsTips
 ;; http://www.emacswiki.com
+;;
+;;
+;; setup
+;;   Pymacs  http://pymacs.progiciels-bpi.ca/pymacs.html
+;;   rope/ropemacs http://rope.sourceforge.net/ropemacs.html
+;;
+
+
 
 ; local path
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
@@ -196,6 +204,14 @@
 
 ;;http://www.emacswiki.org/emacs/SrSpeedbar
 (require 'sr-speedbar)
+
+;;https://chrome.google.com/webstore/detail/ljobjlafonikaiipfkggjbhkghgicgoh#
+;;https://github.com/stsquad/emacs_chrome
+ (if (and (daemonp) (locate-library "edit-server"))
+     (progn
+       (require 'edit-server)
+       (edit-server-start)))
+
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
   ;; If you edit it by hand, you could mess it up, so be careful.
