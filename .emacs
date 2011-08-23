@@ -259,6 +259,7 @@
  '(desktop-save t)
  '(ecb-source-path (quote (("/" "/") ("/home/adrian/src/candlepin" "candlepin") ("/home/adrian/src/candlepin" "candlepin"))))
  '(flymake-gui-warnings-enabled nil)
+ '(flymake-run-in-place nil)
  '(global-font-lock-mode t nil (font-lock))
  '(ispell-program-name "aspell" t)
  '(js2-highlight-level 3)
