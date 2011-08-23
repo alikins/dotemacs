@@ -13,6 +13,8 @@
 ;
 ; git-blame-mode
 ;
+; python debugging
+;   http://jones.ling.indiana.edu/wiki/Debug_Python_in_Emacs
 ;
 ; useful modes:
 ; follow-mode   (makes windows continue side-by-side)
@@ -36,7 +38,7 @@
 ;;   rope/ropemacs http://rope.sourceforge.net/ropemacs.html
 ;;
 
-
+(require 'cl)
 
 ; local path
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
@@ -52,9 +54,9 @@
 (require 'tabbar)
 (tabbar-mode)
 
+
 ; https://github.com/philjackson/magit
 (require 'magit)
-
 (require 'mwheel)
 
 
@@ -71,13 +73,6 @@
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
 (define-key minibuffer-local-map (kbd "C-<tab>") 'dabbrev-expand)
 
-; and set alt-left/right move though tags in current group
-; and alt-up/down move though groups
-(global-set-key [(meta right)]   'tabbar-forward-tab)
-(global-set-key [(meta left)]   'tabbar-backward-tab)
-(global-set-key [(meta up)]   'tabbar-forward-group)
-(global-set-key [(meta down)]   'tabbar-backward-group)
-
 ; both of the below from emacs-fu
 ; y/n instead of yes/no
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -92,9 +87,6 @@
 ; uh, yeah, put the scroll bars on the right like every
 ; other app in the universe
 (set-scroll-bar-mode 'right)
-
-; bind alt-g to goto-line
-(global-set-key [(meta ?g)]    'goto-line)
 
 (setq minibuffer-max-depth nil)
 
@@ -116,6 +108,10 @@
 ;; cycle through them
 (require 'winner)
 
+;; https://github.com/tlh/workgroups.el
+;(require 'workgroups)
+;(workgroups-mode 1)
+;(wg-load "~/.emacs.d/workgroups")
 ;; show which function in the mode bar
 ;;(require 'which-function-mode)
 
@@ -171,9 +167,6 @@
 ; use less name buffer names when we have multiple of the same fileanme
 (require 'uniquify)
 
-; make ctrl-z do the normal thing
-(global-set-key (kbd "C-z") 'undo)
-
 ;; http://www.emacswiki.org/cgi-bin/wiki/menu-bar+.el
 (eval-after-load "menu-bar" '(require 'menu-bar+))
 
@@ -211,6 +204,47 @@
      (progn
        (require 'edit-server)
        (edit-server-start)))
+
+;http://www.damtp.cam.ac.uk/user/sje30/emacs/fm.el
+; tries to automatically show buffers from compile output
+(require 'fm)
+
+; from http://www.mygooglest.com/fni/dot-emacs.html
+; http://www.emacswiki.org/emacs/mic-paren.el
+; shows completion of brackets in mode-line when off screen
+(require 'mic-paren)
+(paren-activate)
+
+;http://www.emacswiki.org/emacs/RevertBuffer
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive) (revert-buffer t t))
+
+; keybindings
+
+; make F5 revet
+(global-set-key [f5] 'revert-buffer-no-confirm)
+
+; make ctrl-z do the normal thing
+(global-set-key (kbd "C-z") 'undo)
+
+; and set alt-left/right move though tags in current group
+; and alt-up/down move though groups
+(global-set-key [(meta right)]   'tabbar-forward-tab)
+(global-set-key [(meta left)]   'tabbar-backward-tab)
+(global-set-key [(meta up)]   'tabbar-forward-group)
+(global-set-key [(meta down)]   'tabbar-backward-group)
+
+; bind alt-g to goto-line
+(global-set-key [(meta ?g)]    'goto-line)
+
+; recent file list
+(recentf-mode 1)
+
+; turn off back and autosave files
+(setq make-backup-files nil)
+(setq auto-save-default nil)
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -258,3 +292,14 @@
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "magenta4" :bold t))))
  '(font-lock-warning-face ((((class color) (background light)) (:foreground "Red" :bold t))))
  '(link ((((class color) (min-colors 88) (background dark)) (:foreground "deep sky blue" :underline t)))))
+
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
