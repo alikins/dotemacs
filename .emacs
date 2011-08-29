@@ -8,8 +8,15 @@
 ; ctrl-h b show all key commands
 ; alt-; comment-dwim (comment/uncomment)
 ; ctrl-tab dabrev/completion
-; alt-g goto line
+; alt-g goto lin
 ; alt-cursor move tabs
+;
+; http://www.emacswiki.org/emacs/Registers
+;  ctrl-x r m (set register/booknark)
+;  ctrl-x r b (jump to register/bookmar)
+;  ctrl-x r w (set window config)
+;  ctrl-x r j N (just to register)
+;
 ;
 ; git-blame-mode
 ;
@@ -37,11 +44,23 @@
 ;;   Pymacs  http://pymacs.progiciels-bpi.ca/pymacs.html
 ;;   rope/ropemacs http://rope.sourceforge.net/ropemacs.html
 ;;
+;; http://www.math.uh.edu/~bgb/emacs_keys.html
 
 (require 'cl)
 
 ; local path
 (add-to-list 'load-path "~/.emacs.d/site-lisp/")
+
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
+(when
+    (load
+     (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
 
 (setq-default user-mail-address "alikins@redhat.com")
 
@@ -68,6 +87,7 @@
 ; http://www.emacswiki.org/emacs/InteractivelyDoThings
 (require 'ido)
 (ido-mode t)
+(setq ido-max-directory-size 100000)
 
 ;http://www.emacswiki.org/emacs/DynamicAbbreviations
 (global-set-key (kbd "C-<tab>") 'dabbrev-expand)
@@ -245,6 +265,14 @@
 (setq make-backup-files nil)
 (setq auto-save-default nil)
 
+; turn off the tool bar
+(tool-bar-mode 0)
+
+(require 'smex)
+(smex-initialize)
+(global-set-key (kbd "M-x") 'smex)
+(global-set-key (kbd "M-X") 'smex-major-mode-commands) ;; This is your old M-x.
+;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -295,12 +323,3 @@
  '(link ((((class color) (min-colors 88) (background dark)) (:foreground "deep sky blue" :underline t)))))
 
 
-;;; This was installed by package-install.el.
-;;; This provides support for the package system and
-;;; interfacing with ELPA, the package archive.
-;;; Move this code earlier if you want to reference
-;;; packages in your .emacs.
-(when
-    (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
