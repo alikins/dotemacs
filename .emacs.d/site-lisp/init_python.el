@@ -5,15 +5,15 @@
 (require 'pycov2)
 (add-hook 'python-mode-hook
       (lambda ()
-	(set-variable 'py-indent-offset 4)
-	;(set-variable 'py-smart-indentation nil)
-	(set-variable 'indent-tabs-mode nil)
-    (pycov2-mode)
-;;	(define-key python-mode-map (kbd "RET") 'newline-and-indent)
-	;(define-key py-mode-map [tab] 'yas/expand)
-	;(setq yas/after-exit-snippet-hook 'indent-according-to-mode)
-	;(smart-operator-mode-on)
-	))
+        (set-variable 'py-indent-offset 4)
+;(set-variable 'py-smart-indentation nil)
+        (set-variable 'indent-tabs-mode nil)
+        (pycov2-mode)
+;;  (define-key python-mode-map (kbd "RET") 'newline-and-indent)
+;(define-key py-mode-map [tab] 'yas/expand)
+;(setq yas/after-exit-snippet-hook 'indent-according-to-mode)
+;(smart-operator-mode-on)
+))
 ;; pymacs
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
@@ -110,15 +110,15 @@
 (when (load "flymake" t)
   (defun flymake-pyflakes-init ()
     (let* ((temp-file (flymake-init-create-temp-buffer-copy
-		       'flymake-create-temp-inplace))
-	   (local-file (file-relative-name
-			temp-file
-			(file-name-directory buffer-file-name))))
+                       'flymake-create-temp-inplace))
+           (local-file (file-relative-name
+                        temp-file
+                        (file-name-directory buffer-file-name))))
 ;; https://bitbucket.org/jek/sandbox/src/tip/pycheckers
       (list "pycheckers" (list local-file))))
-;;      (list "pyflakes" (list local-file))))
+  ;;      (list "pyflakes" (list local-file))))
   (add-to-list 'flymake-allowed-file-name-masks
-	       '("\\.py\\'" flymake-pyflakes-init)))
+               '("\\.py\\'" flymake-pyflakes-init)))
 (add-hook 'find-file-hook 'flymake-find-file-hook)
 (require 'flymake-cursor)
 (provide 'init_python)
