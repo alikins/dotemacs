@@ -165,8 +165,14 @@
 ; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
 (require 'init_python)
 
+;; flymake highlight for ruby
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
+
+;; flymake highlighting for rpm specfiles based
+;; on rpmlint
+(require 'flymake-specfile)
+
 
 
 ; http://code.google.com/p/js2-mode
@@ -273,6 +279,7 @@
 (global-set-key (kbd "M-x") 'smex)
 (global-set-key (kbd "M-X") 'smex-major-mode-commands) ;; This is your old M-x.
 ;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
