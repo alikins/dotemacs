@@ -136,6 +136,7 @@
 ;;(require 'which-function-mode)
 
 ;; use aspell for spelling
+
 (setq ispell-program-name "aspell")
 
 ;; pymacs http://pymacs.progiciels-bpi.ca/pymacs.html#installation
@@ -165,15 +166,35 @@
 ; http://www.emacswiki.org/emacs/?action=browse;oldid=PythonMode;id=PythonProgrammingInEmacs
 (require 'init_python)
 
+; turn on spell checking in comments/strings for programming modes
+; http://www.lrde.epita.fr/cgi-bin/twiki/view/Projects/EmacsTricks
+(add-hook 'text-mode-hook 'turn-on-flyspell)
+(add-hook 'python-mode-hook 'flyspell-prog-mode)
+(add-hook          'c-mode-hook 'flyspell-prog-mode)
+(add-hook         'sh-mode-hook 'flyspell-prog-mode)
+(add-hook        'c++-mode-hook 'flyspell-prog-mode)
+(add-hook       'ruby-mode-hook 'flyspell-prog-mode)
+(add-hook      'cperl-mode-hook 'flyspell-prog-mode)
+(add-hook     'python-mode-hook 'flyspell-prog-mode)
+(add-hook   'autoconf-mode-hook 'flyspell-prog-mode)
+(add-hook   'autotest-mode-hook 'flyspell-prog-mode)
+(add-hook   'makefile-mode-hook 'flyspell-prog-mode)
+(add-hook 'emacs-lisp-mode-hook 'flyspell-prog-mode)
+
 ;; flymake highlight for ruby
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
 
 ;; flymake highlighting for rpm specfiles based
 ;; on rpmlint
-(require 'flymake-specfile)
+;;(require 'flymake-specfile)
 
+; flymkae for java script using rhink and jslint
+;;(require 'flymake-jslint)
 
+; flyamke for bash
+;;(require 'flymake-shell)
+;;(add-hook 'sh-mode-hook 'flymake-shell-load)
 
 ; http://code.google.com/p/js2-mode
 ; use js2 mode for javascript/json
