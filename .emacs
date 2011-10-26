@@ -48,9 +48,10 @@
 
 (require 'cl)
 
-; local path
-(add-to-list 'load-path "~/.emacs.d/site-lisp/")
 
+;local path
+(add-to-list 'load-path "~/.emacs.d/site-lisp/")
+;(add-to-list 'load-path "~/.emacs.d/site-lisp/icicles")
 
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
@@ -61,6 +62,7 @@
     (load
      (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
+
 
 (setq-default user-mail-address "alikins@redhat.com")
 
@@ -193,8 +195,8 @@
 ;;(require 'flymake-jslint)
 
 ; flyamke for bash
-;;(require 'flymake-shell)
-;;(add-hook 'sh-mode-hook 'flymake-shell-load)
+(require 'flymake-shell)
+(add-hook 'sh-mode-hook 'flymake-shell-load)
 
 ; http://code.google.com/p/js2-mode
 ; use js2 mode for javascript/json
@@ -223,9 +225,9 @@
 (require 'linum)
 (require 'pycov2)
 
-;; http://code.google.com/p/yasnippet/
+;; ;; http://code.google.com/p/yasnippet/
 (add-to-list 'load-path
-             "~/.emacs.d/plugins/yasnippet-0.6.1c")
+              "~/.emacs.d/plugins/yasnippet-0.6.1c")
 (require 'yasnippet) ;; not yasnippet-bundle
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
@@ -243,7 +245,7 @@
 (require 'nose)
 
 ;;http://www.emacswiki.org/emacs/SrSpeedbar
-(require 'sr-speedbar)
+;(require 'sr-speedbar)
 
 ;;https://chrome.google.com/webstore/detail/ljobjlafonikaiipfkggjbhkghgicgoh#
 ;;https://github.com/stsquad/emacs_chrome
@@ -271,6 +273,9 @@
 
 ; make F5 revet
 (global-set-key [f5] 'revert-buffer-no-confirm)
+
+; make F3 find-tag
+(global-set-key [f3] 'find-tag)
 
 ; make ctrl-z do the normal thing
 (global-set-key (kbd "C-z") 'undo)
@@ -301,6 +306,12 @@
 (global-set-key (kbd "M-X") 'smex-major-mode-commands) ;; This is your old M-x.
 ;;(global-set-key (kbd "C-c C-c M-x") 'execute-extended-command)
 
+;; http://www.emacswiki.org/cgi-bin/wiki/TabCompletion#toc2
+;; https://github.com/haxney/smart-tab
+;; tab completion stuff
+(require 'smart-tab)
+(global-smart-tab-mode 1)
+
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -317,7 +328,7 @@
  '(flymake-gui-warnings-enabled nil)
  '(flymake-run-in-place nil)
  '(global-font-lock-mode t nil (font-lock))
- '(ispell-program-name "aspell" t)
+ '(ispell-program-name "aspell")
  '(js2-highlight-level 3)
  '(js2-mirror-mode nil)
  '(js2-missing-semi-one-line-override t)
@@ -349,5 +360,3 @@
  '(font-lock-variable-name-face ((((class color) (background light)) (:foreground "magenta4" :bold t))))
  '(font-lock-warning-face ((((class color) (background light)) (:foreground "Red" :bold t))))
  '(link ((((class color) (min-colors 88) (background dark)) (:foreground "deep sky blue" :underline t)))))
-
-
