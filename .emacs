@@ -195,8 +195,8 @@
 ;;(require 'flymake-jslint)
 
 ; flyamke for bash
-(require 'flymake-shell)
-(add-hook 'sh-mode-hook 'flymake-shell-load)
+;(require 'flymake-shell)
+;(add-hook 'sh-mode-hook 'flymake-shell-load)
 
 ; http://code.google.com/p/js2-mode
 ; use js2 mode for javascript/json
@@ -312,6 +312,7 @@
 (require 'smart-tab)
 (global-smart-tab-mode 1)
 
+(setq temporary-file-directory "~/.emacs.d/tmp/")
 
 (custom-set-variables
   ;; custom-set-variables was added by Custom.
@@ -327,6 +328,7 @@
  '(ecb-source-path (quote (("/" "/") ("/home/adrian/src/candlepin" "candlepin") ("/home/adrian/src/candlepin" "candlepin"))))
  '(flymake-gui-warnings-enabled nil)
  '(flymake-run-in-place nil)
+ '(flymake-number-of-errors-to-display nil)
  '(global-font-lock-mode t nil (font-lock))
  '(ispell-program-name "aspell")
  '(js2-highlight-level 3)
