@@ -1,4 +1,4 @@
-(defvar flymake-ruby-err-line-patterns '(("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)))
+(defvar flymake-ruby-err-line-patterns '(("^\\(.*\\):\\([0-9]+\\) - \\(.*\\)$" 1 2 nil 3)))
 (defvar flymake-ruby-allowed-file-name-masks '((".+\\.\\(rb\\|rake\\)$" flymake-ruby-init)
                                                ("Rakefile$" flymake-ruby-init)))
 
@@ -8,7 +8,7 @@
 
 ;; Invoke ruby with '-c' to get syntax checking
 (defun flymake-ruby-init ()
-  (list "./rubycheck.sh" (list (flymake-init-create-temp-buffer-copy 'flymake-create-temp-in-system-tempdir))))
+  (list "rubycheck.sh" (list (flymake-init-create-temp-buffer-copy 'flymake-create-temp-in-system-tempdir))))
 
 (defun flymake-ruby-load ()
   (interactive)

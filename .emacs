@@ -77,7 +77,7 @@
 
 
 ; https://github.com/philjackson/magit
-(require 'magit)
+;(require 'magit)
 (require 'mwheel)
 
 
@@ -226,13 +226,13 @@
 (require 'pycov2)
 
 ;; ;; http://code.google.com/p/yasnippet/
-(add-to-list 'load-path
-              "~/.emacs.d/plugins/yasnippet-0.6.1c")
-(require 'yasnippet) ;; not yasnippet-bundle
-(yas/initialize)
-(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
-(yas/load-directory "~/.emacs.d/plugins/yasnippets-more")
-(yas/load-directory "~/.emacs.d/plugins/yasnippets-local")
+;(add-to-list 'load-path
+;              "~/.emacs.d/plugins/yasnippet-0.6.1c")
+;(require 'yasnippet) ;; not yasnippet-bundle
+;(yas/initialize)
+;(yas/load-directory "~/.emacs.d/plugins/yasnippet-0.6.1c/snippets")
+;(yas/load-directory "~/.emacs.d/plugins/yasnippets-more")
+;(yas/load-directory "~/.emacs.d/plugins/yasnippets-local")
 
 ;;  http://nschum.de/src/emacs/full-ack/
 (add-to-list 'load-path "/path/to/full-ack")
@@ -292,6 +292,12 @@
 
 ; recent file list
 (recentf-mode 1)
+
+; set ctrl-= to switch to previous buffer
+(global-set-key (kbd "C-=") 'switch-to-previous-buffer)
+    (defun switch-to-previous-buffer ()
+      (interactive)
+      (switch-to-buffer (other-buffer)))
 
 ; turn off back and autosave files
 (setq make-backup-files nil)

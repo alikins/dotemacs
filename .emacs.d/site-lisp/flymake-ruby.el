@@ -1,4 +1,4 @@
-(defvar flymake-ruby-err-line-patterns '(("^\\(.*\\):\\([0-9]+\\): \\(.*\\)$" 1 2 nil 3)))
+(defvar flymake-ruby-err-line-patterns '(("^\\(.*\\):\\([0-9]+\\)\\(.*\\)$" 1 2 nil 3)))
 (defvar flymake-ruby-allowed-file-name-masks '((".+\\.\\(rb\\|rake\\)$" flymake-ruby-init)
                                                ("Rakefile$" flymake-ruby-init)))
 
